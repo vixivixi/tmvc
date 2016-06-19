@@ -21,4 +21,12 @@ class db
         $res=$stmt->execute(); //true or false
         return $res;
     }
+    public function query($sql){
+        $stmt=$this->dbh->prepare($sql);
+        $res=$stmt->execute(); //true or false
+        if(false !== $res){
+            return $stmt->fetchAll();
+        }
+        return [];
+    }
 }

@@ -9,5 +9,5 @@
 require 'autoload.php';
 
 $db=new \app\db();
-$res = $db->execute('CREATE TABLE foo (id SERIAL)');
-var_dump($res);
+$data = $db->query('SELECT * from foo');
+var_dump($data  );
