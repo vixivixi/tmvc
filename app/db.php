@@ -11,8 +11,14 @@ namespace app;
 
 class db
 {
+    private $dbh;
     public function __construct()
     {
-        echo 'hello db';
+        $this->dbh  = new \PDO('mysql:host=localhost;dbname=test','root','');
+    }
+    public function execute($sql){
+        $stmt=$this->dbh->prepare($sql);
+        $res=$stmt->execute(); //true or false
+        return $res;
     }
 }
