@@ -14,5 +14,7 @@ $db=new \app\db();
 //добавляем демо записи
 //$db->execute("INSERT INTO `test`.`Users` (`id`, `name`, `email`) VALUES (NULL, 'вася', 'vas@vas.ru'), (NULL, 'петя', 'pet@vas.ru'), (NULL, 'вова', 'vova@vas.ru')");
 echo '<pre>';
-$data = $db->query('SELECT * from Users','app  \Models\Users');
-var_dump($data  );
+$user= new \app\Models\Users();
+$users = $user->findAll();
+
+var_dump($users);
