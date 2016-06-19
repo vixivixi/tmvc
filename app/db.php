@@ -21,11 +21,11 @@ class db
         $res=$stmt->execute(); //true or false
         return $res;
     }
-    public function query($sql){
+    public function query($sql, $class){
         $stmt=$this->dbh->prepare($sql);
         $res=$stmt->execute(); //true or false
         if(false !== $res){
-            return $stmt->fetchAll();
+            return $stmt->fetchAll(\PDO::FETCH_CLASS,$class);
         }
         return [];
     }
