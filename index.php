@@ -7,3 +7,5 @@
  */
 
 require 'autoload.php';
+
+$db=new \app\db();
