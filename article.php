@@ -10,4 +10,4 @@ if($_GET){
     $news = \app\Models\News::findById($_GET['id']);
     include('template/news.php');
 }
-$db=new \app\db();
+//$db=new \app\db();

@@ -14,7 +14,7 @@ abstract class Model
     const TABLE='';
 
     public static function findAll(){
-        $db = new db();
+        $db = db::instance();
         echo 'SELECT * FROM '.static::TABLE;
         echo static::class;
         return $db->query(
@@ -24,7 +24,7 @@ abstract class Model
 
     }
     public static function findById($id){
-        $db = new db();
+        $db = db::instance();
         $query = 'SELECT * FROM '.static::TABLE .' WHERE id = '.$id.';';
 //        echo $query;
 //        echo static::class;

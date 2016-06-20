@@ -9,13 +9,13 @@
 namespace app;
 
 
-class db
-{
+class db 
+    {
+        use Singletone;
     private $dbh;
-    public function __construct()
+    protected function __construct()
     {
         $this->dbh  = new \PDO('mysql:host=localhost;dbname=test','root','');
-        
     }
     public function execute($sql,$arg=[]){
         $stmt=$this->dbh->prepare($sql);
