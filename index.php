@@ -18,13 +18,14 @@ echo '<pre>';
 //$users = $user->findAll();
 //echo \app\Models\Users::TABLE;
 $user=new \app\Models\Users();
-$user->name='vasky';
-$user->email='baby@vasky.ru';
+
+$user->name='newone';
+$user->email='new@andnew.ru';
 $user->insert();
 
 
-$news = new \app\Models\News;
-$news->insert();
+//$news = new \app\Models\News;
+//$news->insert();
 
 $news = \app\Models\News::getLast();
 include('template/news.php');
@@ -33,9 +34,15 @@ include('template/news.php');
 //$news = \app\Models\News::findById(2);
 //var_dump($news);
 
+$config = \app\Config::instance();
+
+//$config->data['db']['host']='sex.com';
+//$config->data['db']['brigs']='sex2.com';
+//$config->saveConfig();
 
 //$users = \app\Models\Users::findAll();
 
-var_dump($users);
-$user = \app\Models\Users::findAll();
-var_dump($user);
+var_dump($config);
+$users = \app\Models\Users::findAll();
+include('template/user.html');
+//var_dump($user);

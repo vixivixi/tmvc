@@ -36,6 +36,10 @@ class db
         }
         return [];
     }
+    public function getLastId(){
+        return $this->dbh->lastInsertId();
+    }
+    
     public function setDebug(){
         $this->dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 }

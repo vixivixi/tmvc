@@ -52,8 +52,27 @@ abstract class Model
             }
             $field=implode(',',$columns);
             $value=implode(',',array_keys($values));
-//            $values=':'.implode(',:',$columns);
-
+            $sql='INSERT INTO '.static::TABLE." ($field) ".'VALUES'."($value)";
+            $db=db::instance();
+            $db->execute($sql,$values);
+            //добавляем полученный индекс из базы
+            $this->id = $db->getLastId();
+            var_dump($this);
+        }
+    }
+    public function update(){
+        if(!$this->isNew()){
+            return;
+        }
+        else{
+            $columns=[];
+            foreach($this as $k=>$v){
+                if($k == 'id') continue;
+                $columns[] = $k;
+                $values[':'.$k] = $v;
+            }
+            $field=implode(',',$columns);
+            $value=implode(',',array_keys($values));
             $sql='INSERT INTO '.static::TABLE." ($field) ".'VALUES'."($value)";
             $db=db::instance();
             $db->execute($sql,$values);
