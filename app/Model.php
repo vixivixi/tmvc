@@ -9,9 +9,10 @@
 namespace app;
 
 
-class Model
+abstract class Model
 {
     const TABLE='';
+
     public static function findAll(){
         $db = new db();
         echo 'SELECT * FROM '.static::TABLE;
@@ -21,5 +22,18 @@ class Model
             static::class
         );
 
+    }
+    public static function findById($id){
+        $db = new db();
+        $query = 'SELECT * FROM '.static::TABLE .' WHERE id = '.$id.';';
+//        echo $query;
+//        echo static::class;
+        if (count($db->query($query,static::class))){
+            return $db->query(
+                $query,
+                static::class
+            );
+        }else
+            return false;
     }
 }

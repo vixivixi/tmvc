@@ -20,3 +20,7 @@ echo \app\Models\Users::TABLE;
 $users = \app\Models\Users::findAll();
 
 var_dump($users);
+
+$user = \app\Models\Users::findById(2);
+
+var_dump($user);
