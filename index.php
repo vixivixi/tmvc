@@ -17,6 +17,14 @@ echo '<pre>';
 //$user= new \app\Models\Users();
 //$users = $user->findAll();
 //echo \app\Models\Users::TABLE;
+$user=new \app\Models\Users();
+$user->name='vasky';
+$user->email='baby@vasky.ru';
+$user->insert();
+
+
+$news = new \app\Models\News;
+$news->insert();
 
 $news = \app\Models\News::getLast();
 include('template/news.php');
@@ -29,5 +37,5 @@ include('template/news.php');
 //$users = \app\Models\Users::findAll();
 
 var_dump($users);
-$user = \app\Models\Users::findById(2);
+$user = \app\Models\Users::findAll();
 var_dump($user);

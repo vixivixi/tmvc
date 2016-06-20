@@ -12,7 +12,7 @@ namespace app;
 abstract class Model
 {
     const TABLE='';
-
+    public $id;
     public static function findAll(){
         $db = db::instance();
         echo 'SELECT * FROM '.static::TABLE;
@@ -35,5 +35,28 @@ abstract class Model
             );
         }else
             return false;
+    }
+    public function isNew(){
+        return empty($this->id);
+    }
+    public function insert(){
+        if(!$this->isNew()){
+            return;
+        }
+        else{
+            $columns=[];
+            foreach($this as $k=>$v){
+                if($k == 'id') continue;
+                $columns[] = $k;
+                $values[':'.$k] = $v;
+            }
+            $field=implode(',',$columns);
+            $value=implode(',',array_keys($values));
+//            $values=':'.implode(',:',$columns);
+
+            $sql='INSERT INTO '.static::TABLE." ($field) ".'VALUES'."($value)";
+            $db=db::instance();
+            $db->execute($sql,$values);
+        }
     }
 }

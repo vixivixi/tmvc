@@ -20,7 +20,7 @@ class db
     public function execute($sql,$arg=[]){
         $stmt=$this->dbh->prepare($sql);
 
-        $place_holders = implode(',', array_fill(0, count($arg), '?'));
+//        $place_holders = implode(',', array_fill(0, count($arg), '?'));
 
         $res=$stmt->execute($arg); //true or false
         return $res;
@@ -28,7 +28,7 @@ class db
     public function query($sql, $class,$arg=[]){
         $stmt=$this->dbh->prepare($sql);
 
-        $place_holders = implode(',', array_fill(0, count($arg), '?'));
+//        $place_holders = implode(',', array_fill(0, count($arg), '?'));
 
         $res=$stmt->execute($arg); //true or false
         if(false !== $res){
