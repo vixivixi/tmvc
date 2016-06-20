@@ -4,6 +4,9 @@
  * User: user
  * Date: 19.06.2016
  * Time: 23:28
+ * На базе реализованного вами кода сделайте простейшую (!)
+админ-панель новостей с функциями добавления,
+удаления и редактирования новости.
  */
 
 require 'autoload.php';
@@ -19,9 +22,12 @@ echo '<pre>';
 //echo \app\Models\Users::TABLE;
 $user=new \app\Models\Users();
 
-$user->name='newone';
-$user->email='new@andnew.ru';
-$user->insert();
+//$user=\app\Models\Users::findById(21);
+echo \app\Models\Users::delete(26);
+//var_dump($user);
+//$user[0]->name='newsexx88';
+//$user[0]->email='new@sexnew88.ru';
+//$user[0]->save();
 
 
 //$news = new \app\Models\News;
