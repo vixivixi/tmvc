@@ -16,8 +16,18 @@ $db=new \app\db();
 echo '<pre>';
 //$user= new \app\Models\Users();
 //$users = $user->findAll();
-echo \app\Models\Users::TABLE;
-$users = \app\Models\Users::findAll();
+//echo \app\Models\Users::TABLE;
+
+$news = \app\Models\News::getLast();
+include('template/news.php');
+
+//var_dump($news);
+
+//$news = \app\Models\News::findById(2);
+//var_dump($news);
+
+
+//$users = \app\Models\Users::findAll();
 
 var_dump($users);
 

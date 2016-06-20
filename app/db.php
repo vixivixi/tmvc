@@ -15,6 +15,7 @@ class db
     public function __construct()
     {
         $this->dbh  = new \PDO('mysql:host=localhost;dbname=test','root','');
+        
     }
     public function execute($sql,$arg=[]){
         $stmt=$this->dbh->prepare($sql);
@@ -35,4 +36,7 @@ class db
         }
         return [];
     }
+    public function setDebug(){
+        $this->dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+}
 }

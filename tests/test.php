@@ -7,8 +7,28 @@
  */
 require '../autoload.php';
 $db=new \app\db();
-$arg[]='вася';
+//создаем таблицу для
+$db->setDebug();
+
+try{
+//    $db->execute('CREATE TABLE `test`.`News` ( `id` SERIAL NOT NULL , `header` VARCHAR(150) NOT NULL , `article` VARCHAR(1024) NOT NULL , `author` INT NOT NULL , `timestamp` TIMESTAMP NOT NULL ) ENGINE = InnoDB;');
+}
+catch (Exception $e){
+    echo $e->getMessage();
+}
+
+try{
+//    $db->execute("INSERT INTO `test`.`News` ( `header` , `article` , `author` ) VALUES ('Новость 3','Текст 3ей Новости', 1), ('Новость 4','Текст 4й Новости',2);");
+}
+catch (Exception $e){
+    echo $e->getMessage();
+}
+
+
+//$arg[]='вася';
+
 //$db->execute("INSERT INTO `test`.`Users` (`name`, `email`) VALUES ('вася', 'vas@vas.ru'), ('петя', 'pet@vas.ru'), ('вова', 'vova@vas.ru')");
+//$db->execute("DELETE FROM `test`.`Users` WHERE id = 16");
 assert($db->execute('SELECT * FROM USERS'),'не прошла проверка на вставку с пустым аргументом');
 echo '<pre>';
 assert($db->query('SELECT * FROM USERS', '\app\Models\Users'));

@@ -8,8 +8,6 @@
 
 namespace app\Models;
 
-
-use app\db;
 use app\Model;
 
 class Users extends Model
