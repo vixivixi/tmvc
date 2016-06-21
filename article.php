@@ -8,8 +8,8 @@
 require 'autoload.php';
 
 if($_GET){
-    $new = \app\Models\News::findById($_GET['id']);
-    include('templates/onenews.php');
+    $controller=new \app\Controllers\News();
+    $controller->action('One');
 }
 
 //$db=new \app\db();

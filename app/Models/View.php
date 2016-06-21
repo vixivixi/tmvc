@@ -14,9 +14,7 @@ use app\Magic;
 class View
 {
     use Magic;
-
     public function display($template){
-//        var_dump($this->render($template));
         echo $this->render($template);
     }
     public function render($template){
@@ -24,7 +22,7 @@ class View
         include $template;
         $content=ob_get_contents();
         ob_end_clean();
-        $content=str_replace('@','@@',$content);
+//        $content=str_replace('@','@@',$content);
         return $content;
     }
 }

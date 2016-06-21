@@ -28,9 +28,15 @@ class News
     }
     protected function actionIndex(){
 
-        $this->view->users= \app\Models\User::findAll();
-        $this->view->display('templates/bootstrap.html');
+        $this->view->news= \app\Models\News::findAll();
+        $this->view->display('templates/news.php');
 //        echo $view->render('templates/bootstrap.html');
 //        var_dump($view);
+    }
+    protected function actionOne(){
+        $id=(int)$_GET['id'];
+        $this->view->new=\app\Models\News::findById($id);
+        $this->view->display(__DIR__.'/../../templates/onenews.php');
+//        var_dump($this->view->article);
     }
 }

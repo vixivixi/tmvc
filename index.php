@@ -30,7 +30,7 @@ $controller->action('Index');
 //$user= new \app\Models\Users();
 //$users = $user->findAll();
 //echo \app\Models\Users::TABLE;
-$user=new \app\Models\User();
+//$user=new \app\Models\User();
 
 //$user=\app\Models\Users::findById(21);
 //echo \app\Models\Users::delete(26);
@@ -43,8 +43,8 @@ $user=new \app\Models\User();
 //$news = new \app\Models\News;
 //$news->insert();
 
-$news = \app\Models\News::findAll();
-include('templates/news.php');
+//$news = \app\Models\News::findAll();
+//include('templates/news.php');
 
 
 //include('templates/plain.html');
@@ -61,7 +61,7 @@ $config = \app\Config::instance();
 
 //$users = \app\Models\Users::findAll();
 
-var_dump($config);
+//var_dump($config);
 
 //include('templates/bootstrap.html');
 //include('templates/user.html');

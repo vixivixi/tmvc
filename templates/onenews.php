@@ -6,8 +6,13 @@
  * Time: 14:54
  */
 
-    echo "<h1><a href='article.php?id=$new->id'>$new->header</a></h1>";
-    echo "<p>$new->article</p>";
-    echo "<p>$new->timestamp</p>";
-    echo "<p>$new->author</p>";
+    echo "<h1><a href=article.php?id=".$this->new->id.">".$this->new->header."</a></h1>";
+//var_dump($this->new->article);
+//var_dump($this->new->article);
+    echo '<p>';
+    echo $this->new->article;
+    echo '<p>';
+    echo $this->new->timestamp;
+    echo '<p>';
+    echo $this->new->author;
     echo "<hr>";
