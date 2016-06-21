@@ -23,7 +23,7 @@ use app\Model;
 class News extends Model
 {
     const TABLE = 'News';
-    public $header,$article,$author,$timestamp;
+    public $header,$article,$author_id,$timestamp;
     
     public static function getLast(){
         $findAll = parent::findAll();

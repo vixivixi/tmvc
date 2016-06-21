@@ -15,14 +15,22 @@ class db
     private $dbh;
     protected function __construct()
     {
+
         $this->dbh  = new \PDO('mysql:host=localhost;dbname=test','root','');
     }
     public function execute($sql,$arg=[]){
+        $this->dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+
         $stmt=$this->dbh->prepare($sql);
 
 //        $place_holders = implode(',', array_fill(0, count($arg), '?'));
 
-        $res=$stmt->execute($arg); //true or false
+        try {
+            $res = $stmt->execute($arg); //true or false
+        } catch(\PDOException $e) {
+            echo $e->getCode().': - :'.$e->getMessage();
+        }
+
         return $res;
     }
     public function query($sql, $class,$arg=[]){

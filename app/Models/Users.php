@@ -7,8 +7,7 @@
  */
 
 namespace app\Models;
-
-use app\Model;
+    use app\Model;
 
 class Users extends Model
 {
