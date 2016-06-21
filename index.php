@@ -12,7 +12,9 @@
 require 'autoload.php';
 
 $controller=new \app\Controllers\News();
-$controller->action('Index');
+$action = $_GET['action'] ?:'Index';
+
+$controller->action($action);
 
 //include ('templates/header.html');
 
