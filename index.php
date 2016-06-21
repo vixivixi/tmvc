@@ -16,14 +16,14 @@ require 'autoload.php';
 //$db->execute("CREATE TABLE `test`.`Users` ( `id` SERIAL NOT NULL , `name` VARCHAR(100) NOT NULL , `email` VARCHAR(100) NOT NULL ) ENGINE = InnoDB;");
 //добавляем демо записи
 //$db->execute("INSERT INTO `test`.`Users` (`id`, `name`, `email`) VALUES (NULL, 'вася', 'vas@vas.ru'), (NULL, 'петя', 'pet@vas.ru'), (NULL, 'вова', 'vova@vas.ru')");
-echo '<pre>';
+//echo '<pre>';
 //$user= new \app\Models\Users();
 //$users = $user->findAll();
 //echo \app\Models\Users::TABLE;
 $user=new \app\Models\Users();
 
 //$user=\app\Models\Users::findById(21);
-echo \app\Models\Users::delete(26);
+//echo \app\Models\Users::delete(26);
 //var_dump($user);
 //$user[0]->name='newsexx88';
 //$user[0]->email='new@sexnew88.ru';
@@ -34,7 +34,10 @@ echo \app\Models\Users::delete(26);
 //$news->insert();
 
 $news = \app\Models\News::getLast();
-include('template/news.php');
+include('templates/news.php');
+
+
+//include('templates/plain.html');
 
 //var_dump($news);
 //$news = \app\Models\News::findById(2);
@@ -50,5 +53,6 @@ $config = \app\Config::instance();
 
 var_dump($config);
 $users = \app\Models\Users::findAll();
-include('template/user.html');
+include('templates/bootstrap.html');
+//include('templates/user.html');
 //var_dump($user);

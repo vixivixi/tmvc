@@ -6,8 +6,10 @@
  * Time: 14:57
  */
 require 'autoload.php';
+
 if($_GET){
     $news = \app\Models\News::findById($_GET['id']);
-    include('template/news.php');
+    include('templates/news.php');
 }
+
 //$db=new \app\db();
