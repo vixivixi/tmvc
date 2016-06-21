@@ -18,10 +18,13 @@
 
 namespace app\Models;
 
+use app\db;
+use app\Magic;
 use app\Model;
 
 class News extends Model
 {
+    use Magic;
     const TABLE = 'News';
     public $header,$article,$author_id,$timestamp;
     
@@ -34,5 +37,25 @@ class News extends Model
             if($i > 3) break;
         }
         return $res;
+    }
+
+    /**
+     * @param $k
+     * @return $string
+     */
+    public function __get($k){
+//        echo 'получаем параметр: '.$k.' сверяем с параметром '.$this->author_id.var_dump(Authors::findById($this->author_id));
+
+        if($k=='author'){
+            if ($this->author_id){
+                    $author=Authors::findById($this->author_id);
+                if($author[0]->name)
+                return $author[0]->name;
+                return 'does not exist';
+            }else{
+                return 'no author';
+            }
+        }
+        return $this->data[$k];
     }
 }

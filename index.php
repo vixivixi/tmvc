@@ -21,9 +21,9 @@ echo $view->render('templates/bootstrap.html');
 //$db= \app\db::instance();
 //$db->execute("CREATE TABLE `test`.`Users` ( `id` SERIAL NOT NULL , `name` VARCHAR(100) NOT NULL , `email` VARCHAR(100) NOT NULL ) ENGINE = InnoDB;");
 //$db->execute("CREATE TABLE `test`.`Authors` ( `id` SERIAL NOT NULL , `name` VARCHAR(100) NOT NULL) ENGINE = InnoDB;");
-$author= new \app\Models\Authors();
-$author->name='mem';
-$author->save();
+//$author= new \app\Models\Authors();
+//$author->name='mem';
+//$author->save();
 //добавляем демо записи
 //$db->execute("INSERT INTO `test`.`Users` (`id`, `name`, `email`) VALUES (NULL, 'вася', 'vas@vas.ru'), (NULL, 'петя', 'pet@vas.ru'), (NULL, 'вова', 'vova@vas.ru')");
 //echo '<pre>';
@@ -43,7 +43,7 @@ $user=new \app\Models\Users();
 //$news = new \app\Models\News;
 //$news->insert();
 
-$news = \app\Models\News::getLast();
+$news = \app\Models\News::findAll();
 include('templates/news.php');
 
 

@@ -13,6 +13,10 @@ abstract class Model
 {
     const TABLE='';
     public $id;
+
+    /**
+     * @return all query object
+     */
     public static function findAll(){
         $db = db::instance();
         echo 'SELECT * FROM '.static::TABLE;
@@ -23,6 +27,11 @@ abstract class Model
         );
 
     }
+
+    /**
+     * @param $id - id in the sql
+     * @return object or false
+     */
     public static function findById($id){
         $db = db::instance();
         $query = 'SELECT * FROM '.static::TABLE .' WHERE id = '.$id.';';
@@ -36,6 +45,11 @@ abstract class Model
         }else
             return false;
     }
+
+    /**
+     * @param $id
+     * @return bool
+     */
     public static function delete($id){
         $db = db::instance();
         $query = 'DELETE FROM '.static::TABLE .' WHERE id = '.$id.';';

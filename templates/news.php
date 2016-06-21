@@ -7,8 +7,10 @@
  */
 
 foreach ($news as $new){
+    var_dump($new);
     echo "<h1><a href='article.php?id=$new->id'>$new->header</a></h1>";
     echo "<p>$new->article</p>";
     echo "<p>$new->timestamp</p>";
+    echo "<p>$new->author</p>";
     echo "<hr>";
 }
