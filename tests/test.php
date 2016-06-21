@@ -6,9 +6,9 @@
  * Time: 13:13
  */
 require '../autoload.php';
-$db=new \app\db();
+//$db=new \app\db();
 //создаем таблицу для
-$db->setDebug();
+//$db->setDebug();
 
 try{
 //    $db->execute('CREATE TABLE `test`.`News` ( `id` SERIAL NOT NULL , `header` VARCHAR(150) NOT NULL , `article` VARCHAR(1024) NOT NULL , `author` INT NOT NULL , `timestamp` TIMESTAMP NOT NULL ) ENGINE = InnoDB;');
@@ -29,7 +29,12 @@ catch (Exception $e){
 
 //$db->execute("INSERT INTO `test`.`Users` (`name`, `email`) VALUES ('вася', 'vas@vas.ru'), ('петя', 'pet@vas.ru'), ('вова', 'vova@vas.ru')");
 //$db->execute("DELETE FROM `test`.`Users` WHERE id = 16");
-assert($db->execute('SELECT * FROM USERS'),'не прошла проверка на вставку с пустым аргументом');
+//assert($db->execute('SELECT * FROM USERS'),'не прошла проверка на вставку с пустым аргументом');
 echo '<pre>';
-assert($db->query('SELECT * FROM USERS', '\app\Models\Users'));
+//assert($db->query('SELECT * FROM USERS', '\app\Models\Users'));
+echo 'sex';
+//assert(\app\Models\Author::findAll());
+$user= \app\Models\Author::findById(1);
+var_dump($user);
+
 //var_dump($db->query('SELECT * FROM USERS', '\app\Models\Users'));

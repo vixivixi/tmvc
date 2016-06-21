@@ -19,8 +19,8 @@ abstract class Model
      */
     public static function findAll(){
         $db = db::instance();
-        echo 'SELECT * FROM '.static::TABLE;
-        echo static::class;
+//        echo 'SELECT * FROM '.static::TABLE;
+//        echo static::class;
         return $db->query(
             'SELECT * FROM '.static::TABLE,
             static::class
@@ -41,7 +41,7 @@ abstract class Model
             return $db->query(
                 $query,
                 static::class
-            );
+            )[0];
         }else
             return false;
     }
@@ -53,7 +53,7 @@ abstract class Model
     public static function delete($id){
         $db = db::instance();
         $query = 'DELETE FROM '.static::TABLE .' WHERE id = '.$id.';';
-        echo $query;
+//        echo $query;
 
 //        echo $query;
 //        echo static::class;

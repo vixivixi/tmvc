@@ -16,7 +16,8 @@ class View
     use Magic;
 
     public function display($template){
-        $this->render($template);
+//        var_dump($this->render($template));
+        echo $this->render($template);
     }
     public function render($template){
         ob_start();

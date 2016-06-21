@@ -9,7 +9,7 @@
 namespace app\Models;
     use app\Model;
 
-class Users extends Model
+class User extends Model
 {
 //    public static $table='Users';
     const TABLE='Users';

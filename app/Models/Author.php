@@ -11,7 +11,7 @@ namespace app\Models;
 
 use app\Model;
 
-class Authors extends Model
+class Author extends Model
 {
     const TABLE='Authors';
     public $name;

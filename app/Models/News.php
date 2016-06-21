@@ -40,22 +40,42 @@ class News extends Model
     }
 
     /**
+     * LAZY LOAD
      * @param $k
      * @return $string
      */
+
     public function __get($k){
 //        echo 'получаем параметр: '.$k.' сверяем с параметром '.$this->author_id.var_dump(Authors::findById($this->author_id));
-
-        if($k=='author'){
-            if ($this->author_id){
-                    $author=Authors::findById($this->author_id);
-                if($author[0]->name)
-                return $author[0]->name;
-                return 'does not exist';
-            }else{
-                return 'no author';
-            }
+        switch($k){
+            case 'author':
+                return Author::findById($this->author_id)->name;
+            break;
+            default:
+                return NULL;
         }
-        return $this->data[$k];
+//        if($k=='author'){
+//            if ($this->author_id){
+//                    $author=Author::findById($this->author_id);
+//                if($author[0]->name)
+//                return $author[0]->name;
+//                return 'does not exist';
+//            }else{
+//                return 'no author';
+//            }
+//        }
+//        return $this->data[$k];
+    }
+
+    public function __isset($k)
+    {
+//        echo 'получаем параметр: '.$k.' сверяем с параметром '.$this->author_id.var_dump(Authors::findById($this->author_id));
+        switch ($k) {
+            case 'author':
+                return true;
+                break;
+            default:
+                return NULL;
+        }
     }
 }

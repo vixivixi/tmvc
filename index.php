@@ -10,11 +10,11 @@
  */
 
 require 'autoload.php';
+
+$controller=new \app\Controllers\News();
+$controller->action('Index');
+
 //include ('templates/header.html');
-$view = new \app\Models\View;
-$view->users= \app\Models\Users::findAll();
-//$view->display('templates/bootstrap.html');
-echo $view->render('templates/bootstrap.html');
 
 //var_dump($view);
 //создаем таблицу
@@ -30,7 +30,7 @@ echo $view->render('templates/bootstrap.html');
 //$user= new \app\Models\Users();
 //$users = $user->findAll();
 //echo \app\Models\Users::TABLE;
-$user=new \app\Models\Users();
+$user=new \app\Models\User();
 
 //$user=\app\Models\Users::findById(21);
 //echo \app\Models\Users::delete(26);
