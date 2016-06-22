@@ -6,6 +6,19 @@
  * Time: 13:13
  */
 require '../autoload.php';
+$col=new \app\Collection();
+$col[]=1;
+$col[]=1;
+$col[]=1;
+
+echo 'pez';
+var_dump($col);
+foreach($col as $key => $val){
+//    echo '\n';
+    echo $key.'~'.$val.'<br>';
+}
+
+
 //$db=new \app\db();
 //создаем таблицу для
 //$db->setDebug();

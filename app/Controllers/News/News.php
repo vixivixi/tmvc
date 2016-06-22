@@ -6,9 +6,9 @@
  * Time: 20:03
  */
 
-namespace app\Controllers;
-
-
+namespace app\Controllers\News;
+use app\Exceptions\Core;
+use app\Exceptions\Db;
 use app\Models\View;
 
 class News
@@ -17,6 +17,7 @@ class News
     public function __construct()
     {
         $this->view=new View();
+        
     }
     public function action($action){
         $methodAction='action'.$action;
@@ -24,19 +25,20 @@ class News
         return $this->$methodAction();
     }
     protected function beforeAction(){
-        echo 'Счетчик';
+//        echo 'Счетчик';
     }
     protected function actionIndex(){
 
         $this->view->news= \app\Models\News::findAll();
-        $this->view->display('templates/news.php');
+        $this->view->display(__DIR__ . '/../../../templates/news.php');
 //        echo $view->render('templates/bootstrap.html');
 //        var_dump($view);
     }
-    protected function actionOne(){
+    protected function actiononenews(){
         $id=(int)$_GET['id'];
         $this->view->new=\app\Models\News::findById($id);
-        $this->view->display(__DIR__.'/../../templates/onenews.php');
+        var_dump($this->new);
+        $this->view->display(__DIR__ . '/../../../templates/onenews.php');
 //        var_dump($this->view->article);
     }
 }

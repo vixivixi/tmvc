@@ -21,10 +21,11 @@ namespace app\Models;
 use app\db;
 use app\Magic;
 use app\Model;
+use app\MultiException;
 
 class News extends Model
 {
-    use Magic;
+//    use Magic;
     const TABLE = 'News';
     public $header,$article,$author_id,$timestamp;
     
@@ -77,5 +78,23 @@ class News extends Model
             default:
                 return NULL;
         }
+    }
+    public function filll($arr){
+        $e = new MultiException();
+        if (true){
+            $e[] = new \Exception('Заголовок не правильный');
+        }
+
+        if (true){
+            $e[] = new \Exception('Текст не правильный');
+        }
+        throw $e;
+    }
+    public function fill($post){
+
+        $this->article=$post['article'];
+        $this->header=$post['header'];
+        $this->author_id=$post['author_id'];
+        $this->id=$post['id'];
     }
 }

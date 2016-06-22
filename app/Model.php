@@ -112,7 +112,7 @@ abstract class Model
 //            UPDATE Users SET email = new@andnew.ru,name = newone WHERE Users id = 27
 //            UPDATE `Users` SET `name`='sex',`email`='sex@xse' WHERE `id` = 27
             $sql="UPDATE `".static::TABLE. "` SET ".implode (',',$arg)." WHERE ".'`id` = ' . $id;
-            echo $sql;
+//            echo $sql;
 //            die();
             $db=db::instance();
             try{

@@ -15,8 +15,12 @@ class db
     private $dbh;
     protected function __construct()
     {
+        try{
+            $this->dbh  = new \PDO('mysql:host=localhost;dbname=test','root','');
+        }catch (\PDOException $e){
+            throw new \app\Exceptions\Db($e->getMessage());
+        }
 
-        $this->dbh  = new \PDO('mysql:host=localhost;dbname=test','root','');
     }
     public function execute($sql,$arg=[]){
         $this->dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);

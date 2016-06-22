@@ -9,30 +9,17 @@
 удаления и редактирования новости.
  */
 
-require 'autoload.php';
+require '..\autoload.php';
 
-//$controller=new \app\Controllers\News();
-$controller= new \app\Controllers\News\News;
-
+$controller=new \app\Controllers\News\adminNews();
 $uri=$_SERVER['REQUEST_URI'];
 $uri=(explode('/',$uri));
 //var_dump($uri);
 $uricontroller='\\'.$uri[1].'\\'.$uri[2];
 $action=$uri[3]?:'Index';
 $_GET['id']=$uri[4];
-//echo $uricontroller.'-'.$action;
 
-//$action = $_GET['action'] ?:'Index';
-
-try{
-    $controller->action($action);
-}
-catch (\app\Exceptions\Core $e){
-    echo $e->getMessage();
-}
-catch (\app\Exceptions\Db $e){
-    echo $e->getMessage();
-}
+$controller->action($action);
 
 
 //include ('templates/header.html');
@@ -74,7 +61,7 @@ catch (\app\Exceptions\Db $e){
 //$news = \app\Models\News::findById(2);
 //var_dump($news);
 
-$config = \app\Config::instance();
+//$config = \app\Config::instance();
 
 //$config->data['db']['host']='sex.com';
 //$config->data['db']['brigs']='sex2.com';
