@@ -5,7 +5,8 @@
  * Date: 19.06.2016
  * Time: 23:28
  */
-function __autoload($class){
+function vixiload($class){
     $path=__DIR__.'/'.str_replace('\\','/',$class).'.php';
     require $path;
 }
+spl_autoload_register('vixiload');

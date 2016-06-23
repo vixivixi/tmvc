@@ -9,8 +9,10 @@
 удаления и редактирования новости.
  */
 
-require 'autoload.php';
 
+require 'vendor/autoload.php';
+require 'autoload.php';
+PHP_Timer::start();
 //$controller=new \app\Controllers\News();
 $controller= new \app\Controllers\News\News;
 
@@ -75,7 +77,7 @@ catch (\app\Exceptions\Db $e){
 //var_dump($news);
 
 $config = \app\Config::instance();
-
+print PHP_Timer::resourceUsage();
 //$config->data['db']['host']='sex.com';
 //$config->data['db']['brigs']='sex2.com';
 //$config->saveConfig();
