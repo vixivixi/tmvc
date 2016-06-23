@@ -18,9 +18,10 @@ class db
         try{
             $this->dbh  = new \PDO('mysql:host=localhost;dbname=test','root','');
         }catch (\PDOException $e){
-            throw new \app\Exceptions\Db($e->getMessage());
+            $edb = new MultiException();
+            $edb[] = $e;
+            throw $edb;
         }
-
     }
     public function execute($sql,$arg=[]){
         $this->dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);

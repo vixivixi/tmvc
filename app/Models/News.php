@@ -25,7 +25,7 @@ use app\MultiException;
 
 class News extends Model
 {
-//    use Magic;
+    use Magic;
     const TABLE = 'News';
     public $header,$article,$author_id,$timestamp;
     

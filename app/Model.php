@@ -11,18 +11,19 @@ namespace app;
 
 abstract class Model
 {
-    const TABLE='';
+    const TABLE = '';
     public $id;
 
     /**
      * @return all query object
      */
-    public static function findAll(){
+    public static function findAll()
+    {
         $db = db::instance();
 //        echo 'SELECT * FROM '.static::TABLE;
 //        echo static::class;
         return $db->query(
-            'SELECT * FROM '.static::TABLE,
+            'SELECT * FROM ' . static::TABLE,
             static::class
         );
 
@@ -32,96 +33,110 @@ abstract class Model
      * @param $id - id in the sql
      * @return object or false
      */
-    public static function findById($id){
+    public static function findById($id)
+    {
         $db = db::instance();
-        $query = 'SELECT * FROM '.static::TABLE .' WHERE id = '.$id.';';
+        $query = 'SELECT * FROM ' . static::TABLE . ' WHERE id = ' . $id . ';';
 //        echo $query;
 //        echo static::class;
-        if (count($db->query($query,static::class))){
+        if (count($db->query($query, static::class))) {
+
             return $db->query(
                 $query,
                 static::class
             )[0];
-        }else
+        } else {
+            $e = new MultiException();
+            $e[] = new \Exception('404 ни чего не найдено');
             return false;
+            throw $e;
+        }
     }
+
 
     /**
      * @param $id
      * @return bool
      */
-    public static function delete($id){
+    public static function delete($id)
+    {
         $db = db::instance();
-        $query = 'DELETE FROM '.static::TABLE .' WHERE id = '.$id.';';
+        $query = 'DELETE FROM ' . static::TABLE . ' WHERE id = ' . $id . ';';
 //        echo $query;
 
 //        echo $query;
 //        echo static::class;
-        if ($db->execute($query)){
+        if ($db->execute($query)) {
             return true;
-        }else
+        } else
             return false;
     }
-    public function isNew(){
+
+    public function isNew()
+    {
         return empty($this->id);
     }
 
-    public function save(){
+    public function save()
+    {
         if (empty($this->id))
             $this->insert();
         else
             $this->update($this->id);
     }
-    public function createTable(){
-        
+
+    public function createTable()
+    {
+
     }
 
-    public function insert(){
-        if(!$this->isNew()){
+    public function insert()
+    {
+        if (!$this->isNew()) {
             return;
-        }
-        else{
-            $columns=[];
-            foreach($this as $k=>$v){
-                if($k == 'id') continue;
+        } else {
+            $columns = [];
+            foreach ($this as $k => $v) {
+                if ($k == 'id') continue;
                 $columns[] = $k;
-                $values[':'.$k] = $v;
+                $values[':' . $k] = $v;
             }
-            $field=implode(',',$columns);
-            $value=implode(',',array_keys($values));
-            $sql='INSERT INTO '.static::TABLE." ($field) ".'VALUES'."($value)";
-            $db=db::instance();
-            $db->execute($sql,$values);
+            $field = implode(',', $columns);
+            $value = implode(',', array_keys($values));
+            $sql = 'INSERT INTO ' . static::TABLE . " ($field) " . 'VALUES' . "($value)";
+            $db = db::instance();
+            $db->execute($sql, $values);
             //добавляем полученный индекс из базы
             $this->id = $db->getLastId();
             var_dump($this);
         }
     }
-    public function update($id){
-        if(!static::findById($id)){
-            return;
-        }
-        else{
 
-            $obj=static::findById($id);
-            $arg=[];
-            foreach($this as $k=>$v){
-                if($k == 'id') continue;
-                $arg[]="`$k`".' = '."'$v'";
+    public function update($id)
+    {
+        if (!static::findById($id)) {
+            return;
+        } else {
+
+            $obj = static::findById($id);
+            $arg = [];
+            foreach ($this as $k => $v) {
+                if ($k == 'id') continue;
+                $arg[] = "`$k`" . ' = ' . "'$v'";
             }
 //            UPDATE Users SET email = new@andnew.ru,name = newone WHERE Users id = 27
 //            UPDATE `Users` SET `name`='sex',`email`='sex@xse' WHERE `id` = 27
-            $sql="UPDATE `".static::TABLE. "` SET ".implode (',',$arg)." WHERE ".'`id` = ' . $id;
+            $sql = "UPDATE `" . static::TABLE . "` SET " . implode(',', $arg) . " WHERE " . '`id` = ' . $id;
 //            echo $sql;
 //            die();
-            $db=db::instance();
-            try{
+            $db = db::instance();
+            try {
                 $db->execute($sql);
-            }catch (\PDOException $e){
-                echo $e->getMessage();
+            } catch (\PDOException $e) {
+                $ex = new MultiException();
+                $ex[] = $e->getMessage();
+                throw $ex;
             }
-
-
         }
     }
 }
